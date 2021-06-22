@@ -1,0 +1,131 @@
+﻿<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+      textarea {
+          width: 100%;
+          min-height: 30rem;
+          background-color: black;
+          font-family: "Lucida Console", Monaco, monospace;
+          font-size: 0.75 rem;
+          line-height: 1.2;
+          color: #fff;
+      }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+   	<div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li><a href="welcome.html"><b>Home</b></a></li>
+        <li><a href="contacts.html"><b>Contacts</b></a></li>
+        <li><a href="addContact.html"><b>Add Contact</b></a></li>
+        <li><a href="stock.html"><b>Stock Page</b></a></li>
+        <li><img src="logoutIcon.png" id = "logout" style = "width: 50px; height: 50px"/></li>
+      </ul>
+  	</div>
+	</nav>
+  <br><br>
+
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body"><center>Welcome to Stock Page</center></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-hover">
+          <tbody>
+            <tr>
+              <td class="col-md-6">Company</td>
+              <td class="col-md-6">
+                <div class="form-group">
+                  <select name="Company" id = "Company">
+                    <option value="GME">Gamestop</option>
+                    <option value="MSFT">Microsoft</option>
+                    <option value="BA">Boeing Company</option>
+                    <option value="AAPL">Apple Inc</option>
+                    <option value="AMZN">Amazon</option>
+                    <option value="NVDA">NVIDIA Corporation</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button type="button" onclick="processStocksJson()">Get Data</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+      <div id="chartContainer"></div>
+  </div>
+
+  <div class="container">
+    <table class="table" id="StockData">
+      <thead>
+        <tr>
+          <th scope="col">Company-MetaData</th>
+          <th scope="col">Stock-Info</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<tr>
+      		<td id = "meta-Data"></td>
+      		<td id = "time-Series"></td>
+      	</tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function processStocksJson(){
+        		var xmlhttp = new XMLHttpRequest();
+        		var apikey = "BVFQUSMI02E68A8Z";
+            var company = document.getElementById('Company').value;
+        		var url ='https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + company + '&apikey=' + apikey;
+
+        		xmlhttp.onreadystatechange = function() {
+        			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        				var mData = JSON.parse(xmlhttp.responseText)['Meta Data'];
+        				var tSeries = JSON.parse(xmlhttp.responseText)['Time Series (Daily)'];
+
+        				document.getElementById('meta-Data').innerHTML = JSON.stringify(mData);
+        				document.getElementById('time-Series').innerHTML = JSON.stringify(tSeries);
+			           }
+		}
+
+		xmlhttp.open("GET",url,true);
+		xmlhttp.send();
+	 }
+  </script>
+	<script>
+		$(document).ready(function(){
+  			$("#logout").click(function(){
+    			 $.get('logout',
+                (data)=> {
+                    if(data.status === 'success') {
+                        window.location.href='login';
+                    } else {
+                        window.alert("Something went wrong");
+                    }
+                });
+ 				 });
+				});
+    </script>  
+</body>
+</html>

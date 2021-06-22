@@ -1,0 +1,97 @@
+﻿<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><a href="welcome.html"><b>Home</b></a></li>
+          <li><a href="contacts.html"><b>Contacts</b></a></li>
+          <li><a href="addContact.html"><b>Add Contact</b></a></li>
+          <li><a href="stock.html"><b>Stock Page</b></a></li>
+          <li><img src="logoutIcon.png" id = "logout" style = "width: 50px; height: 50px"/></li>
+          
+        </ul>
+      </div>
+    </nav>
+    <br><br>
+
+    <div class="container">
+      <table class="table" id="contactsTable">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Location</th>
+            <th scope="col">Contact Information</th>
+            <th scope="col">Email</th>
+            <th scope="col">Website_Name</th>
+            <th scope="col">Website <br> (URL) </th>
+          </tr>
+        </thead>
+        <tbody id = "contactAdd"></tbody>
+      </table>
+    </div>
+    
+   
+    
+    <script type="text/javascript">
+
+      function processcontactsJson(){
+		    var xmlhttp = new XMLHttpRequest();
+		    var url = "getContact";  // set the url to whatever you name the endpoint (route) in
+		                       // createServer.js
+		
+	    	xmlhttp.onreadystatechange = function() {
+			    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				    var obj = JSON.parse(xmlhttp.responseText);
+				    var contactArray = obj.res.contacts;
+				    createNdisplaycontacts(contactArray);
+			    }
+		    }
+		
+		    xmlhttp.open("GET",url,true);
+	  	  xmlhttp.send();
+	    }  
+	 
+	 function createNdisplaycontacts(cArray) {
+	   // initialize string you will append to the table body
+	   var outstring = '';
+	   // loop through string
+	   for(var i = 0; i < cArray.length; i ++) {
+	   	outstring += '<tr><td>' + cArray[i].name + '</td>' +
+	   		 	'<td>' + cArray[i].category + '</td>' +
+	   		 	'<td>' + cArray[i].location + '</td>' +
+	   		 	'<td>' + cArray[i].contact + '</td>' +
+	   		 	'<td>' + cArray[i].email + '</td>' +
+	   		 	'<td>' + cArray[i].website_name + '</td>' +
+	   		 	'<td>' + '<a href = ' + cArray[i].website_url + '>'+ cArray[i].website_url +'</a>' + '</td></tr>';
+	   }
+	   
+	   document.getElementById('contactAdd').innerHTML = outstring;
+	 }
+     	   window.onload = processcontactsJson();
+    </script>  
+    
+    <script>
+		$(document).ready(function(){
+  			$("#logout").click(function(){
+    			 $.get('logout',
+                (data)=> {
+                    if(data.status === 'success') {
+                        window.location.href='login';
+                    } else {
+                        window.alert("Something went wrong");
+                    }
+                });
+ 				 });
+				});
+    </script>
+    
+  </body>
+</html>
