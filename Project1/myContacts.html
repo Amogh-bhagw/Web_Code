@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta name="author" content="Amogh Bhagwat">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="mystyle.css">
+            <script src="myscript.js"></script>
+            <title>My Contacts</title>
+        </head>
+
+        <body>
+            <nav>
+                <a href="myContacts.html">My Contacts</a>
+                <a href="myWidgets.html">My Widgets</a>
+                <a href="myForm.html"> My Form</a>
+                <a href="MyServer.html"> My Server</a>
+            </nav>
+
+            <h1>My University Contacts</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Contact Information</th>
+                    <th>Email</th>
+                    <th>Website</th>
+                </tr>
+
+                <tr>
+                    <th><span class = 'name'>Kathryn Casey</span></th>
+                    <th>Industry</th>
+                    <th>
+                        <span class="address">
+                            16 Johnston Hall 
+                            <br>101 Pleasant Street SE 
+                            <br>Minneapolis MN 55455
+                        </span>
+                    </th>
+                    <th>CLA Acedemic Advisor
+                        <br> <img alt = "Walter" src = "images/walter.jpg">
+                    </th>
+                    <th> <a href="mailto:casey530@umn.edu">casey530@umn.edu</a></th>
+                    <th><a href="https://directory.umn.edu/college-liberal-arts-office-undergraduate-education" 
+                        target="_blank">Department Directory</a></th>
+                </tr>
+
+                <tr>
+                    <th><span class = 'name'>President Joan T.A. Gabel</span></th>
+                    <th>Industry</th>
+                    <th>
+                        <span class="address">
+                                 Morrill Hall 
+                            <br>100 Church Street S.E. 
+                            <br>Minneapolis MN 55455
+                        </span>
+                    </th>
+                    <th>President of the University of Minnesota 
+                        <br> <img alt="Morrill" src = "images/morrill_140522_2592.jpg">
+                    </th>
+                    <th> <a href="mailto:upres@umn.edu">upres@umn.edu</a></th>
+                    <th> <a href="https://president.umn.edu/about" target="_blank">Home Page</a></th>
+                </tr>
+
+                <tr>
+                    <th><span class = 'name'>Dan Challou</span></th>
+                    <th>Industry</th>
+                    <th>
+                        <span class="address">
+                            Shepherd Labs Room 383 
+                            <br>100 Union St SE 
+                            <br>Minneapolis, MN 55455
+                        </span>
+                    </th>
+                    <th>Instructor For Spring Csci 4131
+                        <br> <img src = "images/Shepherd.jpg" alt="Shepherds lab">
+                    </th>
+                    <th> <a href="mailto:chal0006@umn.edu">chal0006@umn.edu</a></th>
+                    <th> <a href="https://cse.umn.edu/cs/dan-challou">Home Page</a></th>
+                </tr>
+
+                <tr>
+                    <th><span class="name">Lana Yarosh</span></th>
+                    <th>Industry</th>
+                    <th>
+                        <span class="address">
+                            5-187 Keller Hall
+                            <br> 200 Union St. SE
+                            <br> Minneapolis, MN 55455
+                        </span>
+                    </th>
+                    <th>Instructor For Spring Csci 5115
+                        <br> <img src = "images/keller.jpg" alt="Keller">
+                    </th>
+                    <th> <a href="mailto:lana@umn.edu">lana@umn.edu</a></th>
+                    <th><a href="http://lanayarosh.com/" target="_blank">Home Page</a></th>
+                </tr>
+
+                <tr>
+                    <th><span class = "name">Marlena Yang</span></th>
+                    <th>Industry</th>
+                    <th>
+                        <span class = "address">
+                            Appleby Hall 311 
+                            <br>128 Pleasant St SE 
+                            <br>Minneapolis, MN 55455
+                        </span>
+                    </th>
+                    <th>Instructor For Spring CLA 3201
+                        <br> <img src = "images/coffman.jpg" alt = "Coffman">
+                    </th>
+                    <th> <a href="mailto:yang1358@umn.edu">yang1358@umn.edu</a></th>
+                    <th><a href="http://aparc.umn.edu/people/marlena-yang" target="_blank">Home Page</a></th>
+                </tr>
+            </table>
+            <div>
+                <img id = "big" src ="images/gophers-mascot.png" alt="Goldy"/>
+                <input id = "lucky" type = "button" value="Im feeling lucky" onclick="showBigPic()">
+                <input id = "dizzy" type = "button" value="Im feeling dizzy" onclick="start()">
+            </div>
+
+            
+            <br>
+            <div id="directionsPanel"></div>
+            <div id = "map"></div>
+                <div id="box3">
+                <div id="searchbar">
+                    <label> MapSearch
+                        <select name="places" id="place" onchange="getPlace()">
+                            <option value="restaurant">Restaurant</option>
+                            <option value="hospital">Hospital</option>
+                            <option value="parking">Parking</option>
+                            <option value="supermarket">Supermarket</option>
+                            <option value="other" id="other">Other</option>
+                        </select> <br>
+                    </label>
+                        <input id="otherSearch" type="text" placeholder="Enter Other Place" disabled> <br>
+                        in
+                        <input id="radius" type="number" min="0" value="500">
+                        meters <br>
+                        <button id = "search">Search</button>
+                        <br>
+                        Directions to 
+                            <input id="directionVal" type="text"  pattern="[a-zA-Z0-9\s]+" title = "Must be alphanumeric" required>
+                        Mode of Travel: 
+                            <select id="mode" onchange="calcRoute();">
+                            <option value="DRIVING">Driving</option>
+                            <option value="WALKING">Walking</option>
+                            <option value="BICYCLING">Bicycling</option>
+                            <option value="TRANSIT">Transit</option>
+                            </select>
+                            <button id = "go">Go</button>
+                </div>
+            </div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhxCidzaHUAf4ftdIoEIbmTKUlLNZODiM&callback=initMap&libraries=places" async defer></script>
+        </body>
+
+    </html>

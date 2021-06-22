@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta name="author" content="Amogh Bhagwat">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="mystyle.css">
+            <script src="myscript.js"></script>
+            <title>My Form</title>
+        </head>
+
+        <body>
+            <nav>
+                <a href="myContacts.html">My Contacts</a>
+                <a href="myWidgets.html">My Widgets</a>
+                <a href="myForm.html"> My Form</a>
+                <a href="MyServer.html"> My Server</a>
+            </nav>
+            <div class = "grid-container2">
+            <form method="post" action = "http://localhost:9001">
+                <p>
+                       <label>Name
+                        <input name = "name" type = "text" size = "25" maxlength = "30" 
+                            pattern="[a-zA-Z0-9\s]+" title = "Must be alphanumeric" required/>                        
+                        </label>
+                    <br>
+                    <label>Category
+                        <select name = "category">
+                            <option value= "Personal">Personal</option>
+                            <option value = "Acedemic">Acedemic</option>
+                            <option value = "Industry">Industry</option>
+                        </select>
+                    </label>
+                    <br>
+
+                    <label> Location
+                        <input id= "location" name = "location" type= "text" required/>
+                    </label>
+                    <br>
+
+                    <label> Contact Information
+                        <input name = "contact" type= "text" required/>
+                    </label>
+                    <br>
+
+                    <label> Email
+                        <input name ="email" type = "email"
+                            placeholder = "name@domain.com" required/>
+                    </label>
+                    <br>
+
+                    <label> Website
+                        <input  name="website" type = "url" 
+                            placeholder = "http://www.domainname.com" required/> 
+                    </label>
+                </p>
+                
+                <p>
+                    <input type = "submit" value = "Submit" >
+                    <input type = "reset" value = "Clear" >
+                </p>
+            </form>
+
+            <div id="map2"></div>
+            </div>
+
+            <script>
+                let markers2 = [];
+                var map2;
+                function setMapOnAll(map) {
+                            for (let i = 0; i < markers2.length; i++) {
+                                markers2[i].setMap(map);
+                            }
+                        }
+
+                        // Removes the markers from the map, but keeps them in the array.
+                        function clearMarkers() {
+                            setMapOnAll(null);
+                        }
+
+                        // Shows any markers currently in the array.
+                        function showMarkers() {
+                            setMapOnAll(map2);
+                        }
+
+                        // Deletes all markers in the array by removing references to them.
+                        function deleteMarkers() {
+                            clearMarkers();
+                            markers2 = [];
+                        }
+                function Map2() {
+
+                    var myOptions = {
+                        zoom: 14,
+                        center: new google.maps.LatLng(44.9727, -93.23540000000003),
+                    }
+                     map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+                    
+                    var input = document.getElementById("location");
+                    var geocoder = new google.maps.Geocoder();
+                    var autocomplete = new google.maps.places.Autocomplete(input);
+                        google.maps.event.addListener(map2, 'click', function(event) {
+                            geocoder.geocode({
+                            'latLng': event.latLng
+                            }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                if (results[0]) {
+                                    deleteMarkers();
+                                    var marker = new google.maps.Marker({
+                                    map: map2,
+                                    position: results[0].geometry.location
+                                    });
+                                    markers2.push(marker);
+                                    input.value = results[0].formatted_address;
+                                    }
+                                }
+                            });
+                         });
+               
+                }
+
+               </script>
+               <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhxCidzaHUAf4ftdIoEIbmTKUlLNZODiM&callback=Map2&libraries=places&v=weekly"
+             ></script>
+
+        </body>
+
+    </html>

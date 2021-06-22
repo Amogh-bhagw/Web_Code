@@ -1,0 +1,113 @@
+﻿<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+     	<div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html"><b>Home</b></a></li>
+          <li><a href="contacts.html"><b>Contacts</b></a></li>
+          <li><a href="addContact.html"><b>Add Contact</b></a></li>
+          <li><a href="stock.html"><b>Stock Page</b></a></li>
+        </ul>
+    	</div>
+  	</nav>
+    <br><br>
+
+    <div class="container">
+      <div class="row">
+        <p><br /></p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <form name="addContact" method="post" action="/postContactEntry">
+              <p></p>
+              <table class="table table-bordered table-hover">
+                <tbody>
+                  <tr>
+                    <td class="col-md-6">Name</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="name" required>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">Category</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                          <select class="form-control" name="category">
+                              <option>Personal</option>
+                              <option>Academic</option>
+                              <option>Industry</option>
+                          </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">Location</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="location" required>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">Contact Information</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="contact" required>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">Email</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" name="email" required>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">Website Name</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="website_name" required maxlength="100">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">Website URL</td>
+                    <td class="col-md-6">
+                      <div class="form-group">
+                        <input type="url" class="form-control" name="website_url" required maxlength="200">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td class="col-md-6"></td>
+                      <td class="col-md-6">
+                          <input type="submit" value="Submit">
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </body>
+</html>

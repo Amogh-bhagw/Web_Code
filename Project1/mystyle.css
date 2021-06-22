@@ -1,0 +1,129 @@
+Body{
+    background-color: gold;
+}
+
+table, th, tr {
+    font: bold;
+    color: black;
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+
+th {
+      text-align: left;
+  }
+
+tr:nth-child(even) {
+    background-color: whitesmoke;
+    }
+tr:nth-child(odd) {
+        background-color: lightblue;
+    }
+
+h1 {
+    color: maroon;
+}
+
+a:link {
+    color:darkblue;
+}
+
+a:hover {
+    color:mediumpurple;
+}
+
+
+form {
+    text-align:justify;
+    }
+
+
+nav {
+    font-size: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: rgb(227, 233, 243);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: maroon;
+    padding: 10px;
+  }
+
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: maroon;
+    padding: 10px;
+    color:gold;
+  }
+.item2 {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: floralwhite;
+}
+
+#Hold {
+    font-size: 50px;
+}
+
+tr img{
+    display: none;
+}
+
+tr:hover img {
+    display: block;
+    width:30px;
+    height:30px;
+}
+
+#big {
+	position: absolute;
+	top: 110px;
+	left: 1050px;
+    width: 350px;
+    height:250px
+
+}
+
+#map {
+    height: 400px;
+    width: 50%;
+    padding-right: 30px;
+}
+
+#map2 {
+    height: 400px;
+    width: 100%;
+}
+
+#lucky {
+    position: absolute;
+	top: 380px;
+	left: 1050px;
+    width: 102px;
+    height:20px
+}
+#dizzy {
+    position: absolute;
+	top: 380px;
+	left: 1160px;
+    width: 102px;
+    height:20px
+}
+
+#searchbar {
+    position: absolute;
+	top: 480px;
+	left: 1100px;
+    width: 102px;
+    height:200px;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
